@@ -1,11 +1,11 @@
-import { View, Text } from "react-native";
-import theme from "../theme";
-import { SignIn } from "@screens/SignIn";
+import { NavigationContainer } from "@react-navigation/native";
+
+import { AuthRoutes } from "./auth.routes";
 
 export function Routes() {
     return (
-        <View style={{flex: 1}}>
-            <SignIn />
-        </View>
+        <NavigationContainer>
+            <AuthRoutes />
+        </NavigationContainer>
     )
 }
