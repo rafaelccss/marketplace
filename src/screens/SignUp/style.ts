@@ -24,16 +24,6 @@ export const styles = StyleSheet.create({
         marginTop: 80,
         marginBottom: 16
     },
-    input: {
-        width: '100%',
-        height: 45,
-        backgroundColor: theme.COLORS.GRAY_7,
-        borderRadius: 6,
-        color: theme.COLORS.GRAY_4,
-        padding: 16,
-        fontSize: theme.FONT_SIZE.MD,
-        marginBottom: 16
-    },
     button: {
         width: '100%',
         height: 42,

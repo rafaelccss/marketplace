@@ -1,8 +1,9 @@
-import { View, Image, Text, TextInput, TouchableOpacity } from "react-native"
+import { View, Image, Text, TouchableOpacity } from "react-native"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
-
-import { AuthNavigatorRoutesProps } from "src/routes/auth.routes"
 import { useNavigation } from '@react-navigation/native';
+
+import { Input } from "@components/Input";
+import { AuthNavigatorRoutesProps } from "src/routes/auth.routes"
 
 import { styles } from "./style"
 
@@ -13,15 +14,53 @@ import { useState } from "react"
 
 export function SignUp() {
     const [name, setName] = useState<string>()
+
     const [email, setEmail] = useState<string>()
+    const [emailErrorMessage, setEmailErrorMessage] = useState<string>()
+
     const [phone, setPhone] = useState<string>()
+
     const [password, setPassword] = useState<string>()
+    const [passwordErrorMessage, setPasswordErrorMessage] = useState<string>();
+
     const [passwordConfirm, setPasswordConfirm] = useState<string>()
+    const [passwordConfirmErrorMessage, setpasswordConfirmErrorMessage] = useState<string>();
+
 
     const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
     function handleGoBack() {
         navigation.goBack();
+    }
+
+    function handleEmailChange(text: string) {
+        setEmail(text);
+        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+
+        if (!emailRegex.test(text)) {
+            setEmailErrorMessage("O e-mail é inválido.")
+        } else {
+            setEmailErrorMessage("");
+        }
+    }
+
+    function handlePasswordChange(text: string) {
+        setPassword(text);
+        if (text.length < 6) {
+            setPasswordErrorMessage("A senha deve ter pelo menos 6 caracteres.");
+        } else {
+            setPasswordErrorMessage("");
+        }
+    }
+
+    function handlePasswordConfirmChange(text: string) {
+        setPasswordConfirm(text);
+
+        if (text !== password) {
+            setpasswordConfirmErrorMessage("A confirmação da senha não confere");
+        } else {
+            setpasswordConfirmErrorMessage("");
+        }
     }
 
     return (
@@ -54,38 +93,38 @@ export function SignUp() {
                     />
                 </View>
 
-                <TextInput
-                    style={styles.input}
+                <Input
                     placeholder="Nome"
                     onChangeText={setName}
                     value={name}
                 />
-                <TextInput
-                    style={styles.input}
+                <Input
                     placeholder="E-mail"
-                    onChangeText={setEmail}
+                    onChangeText={handleEmailChange}
                     value={email}
+                    errorMessage={emailErrorMessage}
                 />
 
-                <TextInput
-                    style={styles.input}
+                <Input
                     placeholder="Telefone"
                     onChangeText={setPhone}
                     value={phone}
                 />
 
-                <TextInput
-                    style={styles.input}
+                <Input
                     placeholder="Senha"
-                    onChangeText={setPassword}
+                    onChangeText={handlePasswordChange}
                     value={password}
+                    errorMessage={passwordErrorMessage}
+                    secureTextEntry
                 />
 
-                <TextInput
-                    style={styles.input}
+                <Input
                     placeholder="Confirmar senha"
-                    onChangeText={setPasswordConfirm}
+                    onChangeText={handlePasswordConfirmChange}
                     value={passwordConfirm}
+                    errorMessage={passwordConfirmErrorMessage}
+                    secureTextEntry
                 />
 
                 <TouchableOpacity style={styles.button}>
