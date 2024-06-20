@@ -5,16 +5,22 @@ import { View, Image, Text, TextInput, TouchableOpacity } from "react-native"
 import { styles } from "./style"
 import { AuthNavigatorRoutesProps } from "src/routes/auth.routes";
 
+import { useAuth } from "@hooks/useAuth";
 import Logo from "@assets/logo.png"
 
 export function SignIn() {
-    const [email, setEmail] = useState<string>()
-    const [password, setPassword] = useState<string>()
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
  
+    const { signIn } = useAuth()
     const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
     function handleNewAccount() {
-      navigation.navigate('signUp');
+      navigation.navigate('signUp')
+    }
+
+    async function handleSignIn(email: string, password: string) {
+        await signIn(email, password)
     }
 
     return (
@@ -50,7 +56,10 @@ export function SignIn() {
                     value={password}
                 />
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => handleSignIn(
+                    email,
+                    password
+                )}>
                     <Text style={styles.buttonText}>
                         Entrar
                     </Text>

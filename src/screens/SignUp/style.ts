@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
         fontFamily: theme.FONT_FAMILY.BOLD,
         fontSize: theme.FONT_SIZE.XL,
         color: theme.COLORS.GRAY_1,
-        marginTop: 16, 
+        marginTop: 12, 
         textAlign: "center"
     },
     text: {
