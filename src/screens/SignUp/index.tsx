@@ -1,4 +1,4 @@
-import { View, Image, Text, TouchableOpacity } from "react-native"
+import { View, Image, Text } from "react-native"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 import { useNavigation } from '@react-navigation/native';
 

@@ -1,8 +1,12 @@
-import { FlatList, StyleSheet, View, Text } from "react-native";
+import { FlatList, View, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { Card } from "@components/Card";
-import { Input } from "@components/Input";
 import { CardMyAds } from "@components/CardMyAds";
-import theme from "../../theme";
+import { Input } from "@components/Input";
+import { styles } from "./style";
+import { UserHeader } from "@components/UserHeader";
 
 export function Catalog() {
     const products = [
