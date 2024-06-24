@@ -1,12 +1,14 @@
 import { useState } from "react"
 import { useNavigation } from "@react-navigation/native";
-import { View, Image, Text, TextInput, TouchableOpacity } from "react-native"
+import { View, Image, Text, TouchableOpacity } from "react-native"
 
-import { styles } from "./style"
+import { styles } from "./style";
 import { AuthNavigatorRoutesProps } from "src/routes/auth.routes";
 
 import { useAuth } from "@hooks/useAuth";
 import Logo from "@assets/logo.png"
+import { Input } from "@components/Input";
+import { Button } from "@components/Button";
 
 export function SignIn() {
     const [email, setEmail] = useState<string>("")
@@ -42,28 +44,23 @@ export function SignIn() {
                     Acesse sua conta
                 </Text>
 
-                <TextInput
-                    style={styles.input}
+                <Input
                     placeholder="E-mail"
                     onChangeText={setEmail}
                     value={email}
                 />
 
-                <TextInput
-                    style={styles.input}
+                <Input
                     placeholder="Senha"
                     onChangeText={setPassword}
                     value={password}
                 />
-
-                <TouchableOpacity style={styles.button} onPress={() => handleSignIn(
-                    email,
-                    password
-                )}>
-                    <Text style={styles.buttonText}>
-                        Entrar
-                    </Text>
-                </TouchableOpacity>
+            
+                <Button
+                    buttonTitle="Entrar"
+                    type="blue"
+                    onPress={() => handleSignIn(email, password)}
+                />
             </View>
 
             <View style={styles.containerNewAccount}>
@@ -71,11 +68,12 @@ export function SignIn() {
                     Ainda não tem acesso?
                 </Text>
 
-                <TouchableOpacity style={styles.buttonNewAccount} onPress={handleNewAccount}>
-                    <Text style={styles.buttonTextNewAccount}>
-                        Criar uma conta
-                    </Text>
-                </TouchableOpacity>
+                <Button
+                    buttonTitle="Criar uma conta"
+                    type="light"
+                    style={{marginBottom: 76}}
+                    onPress={() => handleNewAccount()}
+                />
             </View>
         </>
     )

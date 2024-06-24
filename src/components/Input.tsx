@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, TextInputProps, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Eye, EyeSlash } from 'phosphor-react-native';
-import theme from '@theme/index';
+import theme from '../theme';
 
 type Props = TextInputProps & {
     errorMessage?: string

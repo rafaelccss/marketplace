@@ -11,6 +11,7 @@ import Avatar from "@assets/avatar.png"
 import Logo from "@assets/logo.png"
 import EditPhotoIcon from "@assets/editPhotoIcon.png"
 import { useState } from "react"
+import { Button } from "@components/Button";
 
 export function SignUp() {
     const [name, setName] = useState<string>()
@@ -127,21 +128,21 @@ export function SignUp() {
                     secureTextEntry
                 />
 
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>
-                        Criar
-                    </Text>
-                </TouchableOpacity>
+                <Button
+                    buttonTitle="Criar"
+                    type="dark"
+                />
 
                 <Text style={styles.accountText}>
                     Já tem uma conta?
                 </Text>
 
-                <TouchableOpacity style={styles.buttonGoToLogin} onPress={handleGoBack}>
-                    <Text style={styles.buttonTextGoToLogin}>
-                        Ir para o login
-                    </Text>
-                </TouchableOpacity>
+                
+                <Button
+                    buttonTitle="Ir para o login"
+                    type="light"
+                    onPress={handleGoBack}
+                />
             </View>
         </KeyboardAwareScrollView>
     )

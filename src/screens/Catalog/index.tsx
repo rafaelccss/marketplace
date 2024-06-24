@@ -1,6 +1,8 @@
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View, Text } from "react-native";
 import { Card } from "@components/Card";
 import { Input } from "@components/Input";
+import { CardMyAds } from "@components/CardMyAds";
+import theme from "../../theme";
 
 export function Catalog() {
     const products = [
@@ -11,7 +13,13 @@ export function Catalog() {
 
     return (
         <View style={styles.container}>
-            <Input />
+            <CardMyAds numberOfAds={4} style={styles.paddingBottomCardMyAds} />
+            
+            <Text style={styles.text}>
+                Compre produtos variados
+            </Text>
+
+            <Input placeholder="Buscar anúncio"/>
             <FlatList
                 columnWrapperStyle={styles.columnWrapperStyle}
                 contentContainerStyle={styles.contentContainerStyle}
@@ -30,12 +38,23 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 24, 
         alignContent: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        paddingTop: 50,
+        backgroundColor: theme.COLORS.GRAY_6
+    },
+    paddingBottomCardMyAds: {
+        paddingBottom: 40,
     },
     columnWrapperStyle: {
         gap: 24
     },
     contentContainerStyle: {
         gap: 24
-    }
+    },
+    text: {
+        fontFamily: theme.FONT_FAMILY.REGULAR,
+        fontSize: theme.FONT_SIZE.SM,
+        color: theme.COLORS.GRAY_3,
+        marginBottom: 16
+    },
 })
