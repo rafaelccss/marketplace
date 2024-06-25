@@ -79,8 +79,8 @@ export function ImageSelector() {
                         >
                             {
                                 loading
-                                    ? <ActivityIndicator size="small" style={styles.iconColor} />
-                                    : <Plus size={24} style={styles.iconColor} />
+                                    ? <ActivityIndicator size="small" color={theme.COLORS.GRAY_4} />
+                                    : <Plus size={24} color={theme.COLORS.GRAY_4} />
                             }
                         </TouchableOpacity>
                     ) : null
@@ -116,7 +116,4 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 6,
     },
-    iconColor: {
-        color: theme.COLORS.GRAY_4
-    }
 });

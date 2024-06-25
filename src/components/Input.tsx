@@ -4,10 +4,11 @@ import { Eye, EyeSlash } from 'phosphor-react-native';
 import theme from '../theme';
 
 type Props = TextInputProps & {
-    errorMessage?: string
+    errorMessage?: string,
+    multiline?: boolean
 }
 
-export function Input({ errorMessage, secureTextEntry, ...rest }: Props) {
+export function Input({ errorMessage, secureTextEntry, multiline, ...rest }: Props) {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -16,13 +17,15 @@ export function Input({ errorMessage, secureTextEntry, ...rest }: Props) {
 
     return (
         <View style={{ width: '100%' }}>
-            <View style={styles.inputContainer}>
+            <View style={[styles.inputContainer, multiline && { height: 'auto' }]}>
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, multiline && styles.multilineInput]}
                     secureTextEntry={secureTextEntry && !isPasswordVisible}
+                    multiline={multiline}
+                    textAlignVertical="top"
                     {...rest}
                 />
-                {secureTextEntry && (
+                {secureTextEntry && !multiline && (
                     <TouchableOpacity
                         onPress={togglePasswordVisibility}
                         style={styles.iconContainer}
@@ -49,8 +52,13 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         color: theme.COLORS.GRAY_4,
-        padding: 16,
+        paddingVertical: 10,
+        paddingHorizontal: 16,
         fontSize: theme.FONT_SIZE.MD,
+    },
+    multilineInput: {
+        minHeight: 160,
+        paddingVertical: 10,
     },
     iconContainer: {
         padding: 16,
